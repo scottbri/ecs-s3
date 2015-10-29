@@ -1,8 +1,9 @@
 from boto.s3.connection import S3Connection
 
-accessKeyId='yourAccessKey@ecstestdrive.emc.com'
-tenantId='yourTenantId'
-secretKey='yourSecretKey'
+#accessKeyId='yourAccessKey@ecstestdrive.emc.com'
+#tenantId='yourTenantId'
+#secretKey='yourSecretKey'
+from credentials import *
 
 host = 'object.ecstestdrive.com'
 conn = S3Connection(aws_access_key_id=accessKeyId, aws_secret_access_key=secretKey, host=host)

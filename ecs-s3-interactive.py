@@ -1,8 +1,10 @@
 from boto.s3.connection import S3Connection
 
-accessKeyId='yourAccessKeyId@ecstestdrive.emc.com'
-secretKey='yourSecretKey'
-host = 'object.ecstestdrive.com'
+#accessKeyId='yourAccessKeyId@ecstestdrive.emc.com'
+#secretKey='yourSecretKey'
+#host = 'object.ecstestdrive.com'
+from credentials import *
+
 conn = S3Connection(aws_access_key_id=accessKeyId, aws_secret_access_key=secretKey, host=host)
 
 ## Prove that there are no buckets
