@@ -1,5 +1,6 @@
 from boto.s3.connection import S3Connection
 from timeit import default_timer as timer
+import os
 
 #accessKeyId='yourAccessKey@ecstestdrive.emc.com'
 #tenantId='yourTenantId'
@@ -9,7 +10,7 @@ from credentials import *
 host = 'object.ecstestdrive.com'
 conn = S3Connection(aws_access_key_id=accessKeyId, aws_secret_access_key=secretKey, host=host)
 
-waitForUser = False
+waitForUser = True
 
 ##########################################
 ## Prove that there are no buckets
@@ -106,7 +107,9 @@ print "Downloading images/ecs.png into new file ./ecs-new.png"
 bucket = conn.get_bucket('images')
 key = bucket.get_key('ecs.png')
 key.get_contents_to_filename('ecs-new.png')
+os.system("open ecs-new.png")
 
+if waitForUser: raw_input()
 ##########################################
 ## Reveal all keys as urls
 for bucket in conn.get_all_buckets():
