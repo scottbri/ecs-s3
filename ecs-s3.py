@@ -122,3 +122,5 @@ for bucket in conn.get_all_buckets():
 for bucket in conn.get_all_buckets():
     for key in bucket.list():
         print "{bucketname}/{keyname}\t{aclString}".format(bucketname = bucket.name, keyname = key.name, aclString = key.get_acl())
+
+

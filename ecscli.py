@@ -1,4 +1,5 @@
 from boto.s3.connection import S3Connection
+from boto.s3.connection import Location
 from timeit import default_timer as timer
 import argparse
 
@@ -59,6 +60,9 @@ def deleteBucket( bucketName ):
     bucket = conn.get_bucket(bucketName)
     bucket.delete()
 
+def locations():
+    print '\n'.join(i for i in dir(Location) if i[0].isupper())
+
 def deleteKeyTree():
     for bucket in conn.get_all_buckets():
         for key in bucket.list():
@@ -83,6 +87,7 @@ group.add_argument("-df", "--downloadfile", nargs=3, type=str, help="download a 
 group.add_argument("-dk", "--deletekey", nargs=2, type=str, help="delete a key: bucket, key")
 group.add_argument("-db", "--deletebucket", type=str, help="delete bucket")
 group.add_argument("-dkt", "--deletekeytree", action="store_true", help="delete everything in the store including all buckets and keys")
+group.add_argument("-l", "--locations", action="store_true", help="print a list of all locations")
 args = parser.parse_args()
 
 if args.printbucketlist:
@@ -109,4 +114,6 @@ elif args.printkeytext:
     printKeyText(args.printkeytext[0], args.printkeytext[1])
 elif args.downloadfile:
     downloadKey(args.downloadfile[0], args.downloadfile[1], args.downloadfile[2])
+elif args.locations:
+    locations()
 
